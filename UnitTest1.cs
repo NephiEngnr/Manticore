@@ -2,14 +2,13 @@
 // Manticore! (the Boss Battle)
 
 Console.Clear();
-// Print Instructions
 
 Console.WriteLine("'Manticore!!!!!!!!'\nScreamed the man.\n");
 Console.WriteLine(@"You are Player one.
 You will set the position of the Manticore, who is attacking the city.
 It must be set at a position between 1 and 100.
 ");
-Console.Write("Manticore position : ");
+Console.Write("Set Manticore position to : ");
 int Position = int.Parse(Console.ReadLine());
 Console.WriteLine("The Manticore's Position is set to : " + Position + @"
 Press any key to make it player two's turn.");
@@ -19,10 +18,11 @@ Console.CursorVisible = true;
 
 int MHealth = 10;
 int CHealth = 15;
+int Round = 1;
 
 Console.WriteLine(@"
 You are about to face a fierce Manticore.
-The Manticore has begun an attack on the uncoded's ship, and must be destroyed, or the city will fall.
+The Manticore has begun an attack on the Emerald City, and must be destroyed, or the city will fall.
 Here is what you need to know to save the city:
 
 You are player two. It is your turn. 
@@ -36,15 +36,8 @@ Console.Clear();
 bool running = true;
 while (running)
 {
-    if (MHealth >= 1 || CHealth >= 1)
-    {
-        Console.WriteLine("The Manticore's health is " + MHealth + ".");
-        Console.WriteLine("The city's health is " + CHealth + ".");
-        int guess = int.Parse(Console.ReadLine());
-        if (guess == Position) { MHealth = MHealth - 3; }
-        CHealth--;
-    }
-    else if (MHealth <= 0)
+    Console.WriteLine("\nRound : " + Round + "\n");
+    if (MHealth <= 0)
     {
         Console.Clear();
         Console.WriteLine("You WIN!!!!!!!!! You saved the city!!!!");
@@ -58,24 +51,37 @@ while (running)
     }
     else
     {
-        Console.WriteLine("something went wrong, I will have to fix it.");
-        break;
+        Console.WriteLine("The Manticore's health is " + MHealth + ".");
+        Console.WriteLine("The city's health is " + CHealth + ".");
+        Console.Write("Where do you think the manticore is : ");
+        int guess = int.Parse(Console.ReadLine());
+        if (guess == Position)
+        {
+            if (Round == 1 || Round == 2 || Round == 4 || Round == 7 || Round == 8 || Round == 11 || Round == 13 || Round == 14)
+            {
+                MHealth = MHealth - 1;
+                Console.WriteLine("\nDirect hit! damage 1!");
+            }
+            else if (Round == 3 || Round == 5 || Round == 6 || Round == 9 || Round == 10)
+            {
+                MHealth = MHealth - 3;
+                Console.WriteLine("\nDirect hit! Damage 3!");
+            }
+            else if (Round == 15)
+            {
+                MHealth = MHealth - 10;
+                Console.WriteLine("\nDirect hit! Damage 10!");
+            }
+        }
+        else if (guess < Position)
+        {
+            Console.WriteLine("\nToo low. You missed!");
+        }
+        else if (guess > Position)
+        {
+            Console.WriteLine("\nToo high. You missed!");
+        }
     }
-}
-
-
-
-
-
-
-
-
-
-public class UnitTest1
-{
-    [Fact]
-    public void Test1()
-    {
-
-    }
+    CHealth--;
+    Round++;
 }
