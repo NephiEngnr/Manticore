@@ -1,6 +1,8 @@
 // Nephi Allen Homework 9
 // Manticore! (the Boss Battle)
 
+using System.Resources;
+
 Console.Clear();
 
 Console.WriteLine("'Manticore!!!!!!!!'\nScreamed the man.\n");
@@ -8,7 +10,7 @@ Console.WriteLine(@"You are Player one.
 You will set the position of the Manticore, who is attacking the city.
 It must be set at a position between 1 and 100.
 ");
-Console.Write("Set Manticore position to : ");
+Console.Write("Set Manticore position to(number between 1 and 100) : ");
 int Position = int.Parse(Console.ReadLine());
 Console.WriteLine("The Manticore's Position is set to : " + Position + @"
 Press any key to make it player two's turn.");
@@ -36,6 +38,14 @@ Console.Clear();
 bool running = true;
 while (running)
 {
+    while (Round == 5 || Round == 9 || Round == 13)
+    {
+        Console.WriteLine("Player one's turn!");
+        Console.WriteLine(@"Reset the manticore's position. enter '10' to move it up ten, or '- 10' to lower it by ten.
+You can do '+' or '-' any number in between one and ten to raise or lower it by the number you enter after the sign.");
+        Position = Position + int.Parse(Console.ReadLine());
+        Round++;
+    }
     Console.WriteLine("\nRound : " + Round + "\n");
     if (MHealth <= 0)
     {
