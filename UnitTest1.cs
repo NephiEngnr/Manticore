@@ -1,8 +1,6 @@
 // Nephi Allen Homework 9
 // Manticore! (the Boss Battle)
 
-using System.Resources;
-
 Console.Clear();
 
 Console.WriteLine("'Manticore!!!!!!!!'\nScreamed the man.\n");
@@ -40,11 +38,13 @@ while (running)
 {
     while (Round == 5 || Round == 9 || Round == 13)
     {
+        Console.Clear();
         Console.WriteLine("Player one's turn!");
         Console.WriteLine(@"Reset the manticore's position. enter '10' to move it up ten, or '- 10' to lower it by ten.
 You can do '+' or '-' any number in between one and ten to raise or lower it by the number you enter after the sign.");
         Position = Position + int.Parse(Console.ReadLine());
         Round++;
+        Console.Clear();
     }
     Console.WriteLine("\nRound : " + Round + "\n");
     if (MHealth <= 0)
@@ -63,7 +63,7 @@ You can do '+' or '-' any number in between one and ten to raise or lower it by 
     {
         Console.WriteLine("The Manticore's health is " + MHealth + ".");
         Console.WriteLine("The city's health is " + CHealth + ".");
-        Console.Write("Where do you think the manticore is : ");
+        Console.Write("Where do you think the manticore is(number between 1 and 100) : ");
         int guess = int.Parse(Console.ReadLine());
         if (guess == Position)
         {
